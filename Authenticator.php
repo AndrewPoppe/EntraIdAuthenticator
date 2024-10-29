@@ -24,8 +24,9 @@ class Authenticator
 
     public function authenticate(bool $refresh = false, string $originUrl = '')
     {
+        $state = encrypt($this->sessionId . EntraIdAuthenticator::ENTRAID_STATE_SEPARATOR . $originUrl);
         $url = "https://login.microsoftonline.com/" . $this->adTenant . "/oauth2/v2.0/authorize?";
-        $url .= "state=" . $this->sessionId . EntraIdAuthenticator::ENTRAID_STATE_SEPARATOR . urlencode($originUrl);
+        $url .= "state=" . base64_encode($state);
         $url .= "&scope=User.Read";
         $url .= "&response_type=code";
         $url .= "&approval_prompt=auto";

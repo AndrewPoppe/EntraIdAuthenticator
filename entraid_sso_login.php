@@ -7,7 +7,8 @@ namespace YaleREDCap\EntraIdAuthenticator;
 session_id($_COOKIE[EntraIdAuthenticator::ENTRAID_SESSION_ID_COOKIE]);
 session_start();
 
-[$session_id, $originUrl] = explode(EntraIdAuthenticator::ENTRAID_STATE_SEPARATOR, $_GET["state"]);
+$state                    = decrypt(base64_decode($_GET["state"]) ?? '');
+[$session_id, $originUrl] = explode(EntraIdAuthenticator::ENTRAID_STATE_SEPARATOR, $state);
 $authenticator = new Authenticator($module);
 
 $authData = $authenticator->getAuthData($session_id, $_GET["code"]);
