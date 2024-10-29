@@ -1,5 +1,5 @@
 {
-    "name": "EntraId Authenticator (NEW)",
+    "name": "EntraId Authenticator",
     "namespace": "YaleREDCap\\EntraIdAuthenticator",
     "description": "This External Module enables the integration of EntraId authentication in any survey, public report, or public dashboard.",
     "authors": [
